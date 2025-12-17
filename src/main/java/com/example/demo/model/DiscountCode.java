@@ -58,4 +58,5 @@ public class DiscountCode {
     public void setActive(Boolean active) {
         this.active = active;
     }
+public DiscountCode()
 }

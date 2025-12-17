@@ -60,5 +60,12 @@ public class Campaign{
     public Campaign(Long id,String .campaignName,Date startDate,Date endDate,BigDecimal budget,Boolean active)
     this.id=id;
     this.campaignName=campaignName;
-    this.startDate=startDate
+    this.startDate=startDate;
+    this.endDate=endDate;
+    this.budget=budget;
+    this.active=active;
+
+    public Campaign(){
+        
+    }
 }
