@@ -7,8 +7,8 @@ import java.time.Instant;
 public class RoiReport {
     @Id
     private Long id;
-    private Campaign campaign;
-    private Influencer influencer;
+    private String campaign;
+    private String influencer;
     private BigDecimal totalSales;
     private BigDecimal totalRevenue;
     private BigDecimal roiPercentage;
@@ -22,19 +22,19 @@ public class RoiReport {
         this.id = id;
     }
 
-    public Campaign getCampaign() {
+    public String getCampaign() {
         return campaign;
     }
 
-    public void setCampaign(Campaign campaign) {
+    public void setCampaign(String campaign) {
         this.campaign = campaign;
     }
 
-    public Influencer getInfluencer() {
+    public String getInfluencer() {
         return influencer;
     }
 
-    public void setInfluencer(Influencer influencer) {
+    public void setInfluencer(String influencer) {
         this.influencer = influencer;
     }
 
@@ -69,4 +69,5 @@ public class RoiReport {
     public void setGeneratedAt(Instant generatedAt) {
         this.generatedAt = generatedAt;
     }
+    public RoiReport(Long id,String campaign,String influencer,BigDecimal )
 }
