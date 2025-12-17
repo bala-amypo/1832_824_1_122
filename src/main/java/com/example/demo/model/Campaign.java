@@ -54,5 +54,8 @@ public class Campaign{
         return active;
     }
 
-    public void setActive(B)
+    public void setActive(Boolean active){
+        this.active=active;
+    }
+    public Campaign(Long id,String campaignName,)
 }
