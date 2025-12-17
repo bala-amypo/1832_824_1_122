@@ -40,7 +40,7 @@ public class Campaign{
     }
 
     public void setEnDate(Date endDate){
-        this.endDate=endDate
+        this.endDate=endDate;
     }
 
     public BigDecimal getBudget(){
@@ -66,6 +66,6 @@ public class Campaign{
     this.active=active;
 
     public Campaign(){
-        
+
     }
 }
