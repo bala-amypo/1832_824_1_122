@@ -1,6 +1,9 @@
 package com.example.demo.dto;
-
+import jakarta.presistence.Entity;
+import jakarta.presistence.Id;
+@Entity
 public class Influencer{
+    @Id
     private Long id;
     private String name;
     private String socialHandle;

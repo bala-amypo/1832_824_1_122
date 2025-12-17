@@ -1,6 +1,9 @@
 package com.example.demo.dto;
-
+import jakarta.presistence.Entity;
+import jakarta.presistence.Id;
+@Entity
 public class Campaign{
+    @ID
     private Long id;
     private String campaignName;
     private Date startDate;
