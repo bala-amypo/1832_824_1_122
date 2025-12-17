@@ -3,7 +3,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 @Entity
 public class SaleTransaction {
-    @ID
+    @Id
     private Long id;
     private DiscountCode discountCode;
     private BigDecimal saleAmount;

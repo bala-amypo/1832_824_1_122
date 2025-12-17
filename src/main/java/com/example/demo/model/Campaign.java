@@ -3,7 +3,7 @@ import jakarta.presistence.Entity;
 import jakarta.presistence.Id;
 @Entity
 public class Campaign{
-    @ID
+    @Id
     private Long id;
     private String campaignName;
     private Date startDate;

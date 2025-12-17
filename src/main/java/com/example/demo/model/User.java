@@ -2,7 +2,7 @@ package com.example.demo.dto;
 import java.time.LocalDateTime;
 @Entity
 public class User {
-    @ID
+    @Id
     private Long id;
     private String fullName;
     private String email;

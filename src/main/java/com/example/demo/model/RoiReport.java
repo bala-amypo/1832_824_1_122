@@ -3,7 +3,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 @Entity
 public class RoiReport {
-    @ID
+    @Id
     private Long id;
     private Campaign campaign;
     private Influencer influencer;
