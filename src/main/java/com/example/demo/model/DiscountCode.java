@@ -1,9 +1,9 @@
-
-
-
-
+package com.example.demo.dto;
+import jakarta.presistence.Entity;
+import jakarta.presistence.Id;
+@Entity
 public class DiscountCode {
-
+    @ID
     private Long id;
     private String code;
     private Influencer influencer;

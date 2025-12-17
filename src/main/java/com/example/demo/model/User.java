@@ -1,7 +1,8 @@
+package com.example.demo.dto;
 import java.time.LocalDateTime;
 
 public class User {
-
+    @ID
     private Long id;
     private String fullName;
     private String email;

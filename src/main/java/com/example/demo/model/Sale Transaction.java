@@ -1,8 +1,9 @@
+package com.example.demo.dto;
 import java.math.BigDecimal;
 import java.time.Instant;
 
 public class SaleTransaction {
-
+    @ID
     private Long id;
     private DiscountCode discountCode;
     private BigDecimal saleAmount;

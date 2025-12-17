@@ -1,8 +1,9 @@
+package com.example.demo.dto;
 import java.math.BigDecimal;
 import java.time.Instant;
 
 public class RoiReport {
-
+    @ID
     private Long id;
     private Campaign campaign;
     private Influencer influencer;
