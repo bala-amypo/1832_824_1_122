@@ -19,11 +19,11 @@ public class SaleTransaction {
         this.id = id;
     }
 
-    public DiscountCode getDiscountCode() {
+    public String getDiscountCode() {
         return discountCode;
     }
 
-    public void setDiscountCode(DiscountCode discountCode) {
+    public void setDiscountCode(String discountCode) {
         this.discountCode = discountCode;
     }
 
@@ -43,5 +43,11 @@ public class SaleTransaction {
         this.transactionDate = transactionDate;
     }
     public SaleTransaction(Long id,String discountCode,BigDecimal saleAmount,Timestamp transactionDate)
-
+    this.id=id;
+    this.discountCode=discountCode;
+    this.saleAmount=saleAmount;
+    this.transactionDate=transactionDate;
+}
+public SaleTransaction(){
+    
 }
