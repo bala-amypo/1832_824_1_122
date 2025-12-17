@@ -68,4 +68,6 @@ public class Campaign{
     public Campaign(){
 
     }
+    public Campaign(Long id,String campaignName,Date startDate,Date endDate,BigDecimal budget,Boolean active)
+    t
 }
