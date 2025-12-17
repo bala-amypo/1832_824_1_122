@@ -27,19 +27,19 @@ public class DiscountCode {
         this.code = code;
     }
 
-    public Influencer getInfluencer() {
+    public String getInfluencer() {
         return influencer;
     }
 
-    public void setInfluencer(Influencer influencer) {
+    public void setInfluencer(String influencer) {
         this.influencer = influencer;
     }
 
-    public Campaign getCampaign() {
+    public String getCampaign() {
         return campaign;
     }
 
-    public void setCampaign(Campaign campaign) {
+    public void setCampaign(String campaign) {
         this.campaign = campaign;
     }
 
@@ -58,5 +58,5 @@ public class DiscountCode {
     public void setActive(Boolean active) {
         this.active = active;
     }
-public DiscountCode(Long id,String code,)
+public DiscountCode(Long id,String code,String In)
 }
