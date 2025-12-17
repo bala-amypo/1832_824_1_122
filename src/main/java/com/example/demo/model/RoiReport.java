@@ -1,4 +1,6 @@
 package com.example.demo.dto;
+import jakarta.presistence.Entity;
+import jakarta.presistence.Id;
 import java.math.BigDecimal;
 import java.time.Instant;
 @Entity
