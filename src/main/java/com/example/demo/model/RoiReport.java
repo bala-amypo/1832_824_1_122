@@ -69,5 +69,8 @@ public class RoiReport {
     public void setGeneratedAt(Instant generatedAt) {
         this.generatedAt = generatedAt;
     }
-    public RoiReport(Long id,String campaign,String influencer,BigDecimal )
+    public RoiReport(Long id,String campaign,String influencer,BigDecimal totalSales,BigDecimal totalRevenue,BigDecimal roiPercentage,Timestamp generatedAt)
+    this.id=id;
+    this.campaign=campaign;
+    this.
 }
