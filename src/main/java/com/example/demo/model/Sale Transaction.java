@@ -42,4 +42,5 @@ public class SaleTransaction {
     public void setTransactionDate(Instant transactionDate) {
         this.transactionDate = transactionDate;
     }
+    
 }

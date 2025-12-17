@@ -65,6 +65,7 @@ this.Influencer=Influencer;
 this.campaign=campaign;
 this.discountPercentage=discountPercentage;
 this.active=active;
-
-
+}
+public DiscountCode(){
+    
 }
