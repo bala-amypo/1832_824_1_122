@@ -68,6 +68,13 @@ public class Campaign{
     public Campaign(){
 
     }
-    public Campaign(Long id,String campaignName,Date startDate,Date endDate,BigDecimal budget,Boolean active)
-    t
+    public Campaign(Long id,String campaignName,Date startDate,Date endDate,BigDecimal budget,Boolean active){
+    this.id=id;
+    this.campaignName=campaignName;
+    this.startDate=startDate;
+    this.endDate=endDate;
+    this.budget=budget;
+    this.active=active;
+    }
+    
 }
