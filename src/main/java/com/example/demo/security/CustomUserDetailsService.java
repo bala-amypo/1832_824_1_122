@@ -1,3 +1,5 @@
 package com.example.demo.security;
 
-public class CustomUserDetails
+public class CustomUserDetailsService{
+    
+}
