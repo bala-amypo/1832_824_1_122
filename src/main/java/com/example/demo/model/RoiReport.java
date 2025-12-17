@@ -72,5 +72,12 @@ public class RoiReport {
     public RoiReport(Long id,String campaign,String influencer,BigDecimal totalSales,BigDecimal totalRevenue,BigDecimal roiPercentage,Timestamp generatedAt)
     this.id=id;
     this.campaign=campaign;
-    this.
+    this.influencer=influencer;
+    this.totalSales=totalSales;
+    this.totalRevenue=totalRevenue;
+    this.roiPercentage=roiPercentage;
+    this.generatedAt=generatedAt;
+}
+public RoiReport(){
+    
 }
