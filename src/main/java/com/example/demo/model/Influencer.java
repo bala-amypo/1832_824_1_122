@@ -24,5 +24,35 @@ public class Influencer{
         this.name=name;
     }
 
-    public String 
+    public String getSocialHandle(){
+        return socialHandle;
+    }
+
+    public void setSocialHandle(String socialHandle){
+        this.socialHandle=socialHandle;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setEmail(String email){
+        this.email=email;
+    }
+
+    public Boolean getActive(){
+        return active;
+    }
+
+    public void setActive(Boolean active){
+        this.active=active;
+    }
+    public Timestamp getCreatedAt(){
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt){
+        this.createdAt=createdAt;
+    }
+
 }
