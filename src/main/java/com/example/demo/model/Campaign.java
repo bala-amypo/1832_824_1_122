@@ -76,7 +76,8 @@ public class Campaign{
     this.budget=budget;
     this.active=active;
     }
-}
+
 public Campaign(){
 
+}
 }
