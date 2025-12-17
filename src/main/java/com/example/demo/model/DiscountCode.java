@@ -58,5 +58,8 @@ public class DiscountCode {
     public void setActive(Boolean active) {
         this.active = active;
     }
-public DiscountCode(Long id,String code,String In)
+public DiscountCode(Long id,String code,String Influencer,String campaign,Double discountPercentage,Boolean active)
+this.id=id;
+this.code-code;
+this.
 }
