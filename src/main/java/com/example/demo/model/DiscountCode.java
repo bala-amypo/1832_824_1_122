@@ -6,8 +6,8 @@ public class DiscountCode {
     @Id
     private Long id;
     private String code;
-    private Influencer influencer;
-    private Campaign campaign;
+    private String influencer;
+    private String campaign;
     private Double discountPercentage;
     private Boolean active;
 
@@ -58,5 +58,5 @@ public class DiscountCode {
     public void setActive(Boolean active) {
         this.active = active;
     }
-public DiscountCode(Long id,Str)
+public DiscountCode(Long id,String code,)
 }
