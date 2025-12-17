@@ -61,5 +61,10 @@ public class DiscountCode {
 public DiscountCode(Long id,String code,String Influencer,String campaign,Double discountPercentage,Boolean active)
 this.id=id;
 this.code-code;
-this.
+this.Influencer=Influencer;
+this.campaign=campaign;
+this.discountPercentage=discountPercentage;
+this.active=active;
+
+
 }
