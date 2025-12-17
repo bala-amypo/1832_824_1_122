@@ -1,6 +1,6 @@
 package com.example.demo.dto;
 import java.time.LocalDateTime;
-
+@Entity
 public class User {
     @ID
     private Long id;

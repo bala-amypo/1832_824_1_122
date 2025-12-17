@@ -1,7 +1,7 @@
 package com.example.demo.dto;
 import java.math.BigDecimal;
 import java.time.Instant;
-
+@Entity
 public class SaleTransaction {
     @ID
     private Long id;
