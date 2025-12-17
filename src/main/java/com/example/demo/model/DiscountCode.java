@@ -58,5 +58,5 @@ public class DiscountCode {
     public void setActive(Boolean active) {
         this.active = active;
     }
-public DiscountCode()
+public DiscountCode(Long id,Str)
 }
