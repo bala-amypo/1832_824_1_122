@@ -35,6 +35,14 @@ public class Campaign{
         this.startDate=startDate;
     }
 
+    public Date getEndDate(){
+        return EndDate;
+    }
+
+    public void setEnDate(Date endDate){
+        this.endDate=endDate
+    }
+
     public BigDecimal getBudget(){
         return getBudget;
     }
