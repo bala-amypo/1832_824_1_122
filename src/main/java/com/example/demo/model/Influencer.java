@@ -58,6 +58,6 @@ public class Influencer{
         this.createdAt=createdAt;
     }
 
-    
+    public Influencer(Long id,String campaignName,Date startDate,Date)
 
 }
