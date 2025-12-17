@@ -27,7 +27,20 @@ public class Campaign{
         return startDate;
     }
 
-    public void getStartDate(Date startDate){
-        this.
+    public void setStartDate(Date startDate){
+        this.startDate=startDate;
     }
+
+    public BigDecimal getBudget(){
+        return getBudget;
+    }
+
+    public void setBudget(BigDecimal budget){
+        this.budget=budget;
+    }
+    public Boolean getActive(){
+        return active;
+    }
+
+    public void setActive(B)
 }
