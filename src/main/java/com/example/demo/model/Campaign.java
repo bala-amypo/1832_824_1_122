@@ -57,14 +57,14 @@ public class Campaign{
     public void setActive(Boolean active){
         this.active=active;
     }
-    public Campaign(Long id,String .campaignName,Date startDate,Date endDate,BigDecimal budget,Boolean active)
+    public Campaign(Long id,String campaignName,Date startDate,Date endDate,BigDecimal budget,Boolean active){
     this.id=id;
     this.campaignName=campaignName;
     this.startDate=startDate;
     this.endDate=endDate;
     this.budget=budget;
     this.active=active;
-
+    }
     public Campaign(){
 
     }
