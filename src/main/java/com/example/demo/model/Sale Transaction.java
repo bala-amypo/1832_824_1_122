@@ -7,7 +7,6 @@ import java.time.Instant;
 public class SaleTransaction {
     @Id
     private Long id;
-    private DiscountCode discountCode;
     private String discountCode;
     private BigDecimal saleAmount;
     private Instant transactionDate;
@@ -43,6 +42,6 @@ public class SaleTransaction {
     public void setTransactionDate(Instant transactionDate) {
         this.transactionDate = transactionDate;
     }
-    public SaleTransaction(Long id,String discountCode,BigDecimal saleAmount,Timestamp tr)
+    public SaleTransaction(Long id,String discountCode,BigDecimal saleAmount,Timestamp transactionDate)
 
 }
