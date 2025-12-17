@@ -58,6 +58,7 @@ public class Influencer{
         this.createdAt=createdAt;
     }
 
-    public Influencer(Long id,String name,String socialHandle,String email,Boolean active )
+    public Influencer(Long id,String name,String socialHandle,String email,Boolean active,Timestamp createdAt )
+    t
 
 }
