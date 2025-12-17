@@ -62,6 +62,11 @@ public class Influencer{
     this.id=id;
     this.name=name;
     this.socialHandle=socialHandle;
-    this.
+    this.email=email;
+    this.active=active;
+    this.createdAt=createdAt;
+}
 
+public Influencer(){
+    
 }
