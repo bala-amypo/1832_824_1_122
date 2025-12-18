@@ -1,15 +1,28 @@
 package com.example.demo.dto;
-import jakarta.presistence.Entity;
-import jakarta.presistence.Id;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.math.BigDecimal;
 import java.time.Instant;
+
 @Entity
 public class SaleTransaction {
+
     @Id
     private Long id;
     private String discountCode;
     private BigDecimal saleAmount;
     private Instant transactionDate;
+
+    public SaleTransaction() {
+    }
+
+    public SaleTransaction(Long id, String discountCode, BigDecimal saleAmount, Instant transactionDate) {
+        this.id = id;
+        this.discountCode = discountCode;
+        this.saleAmount = saleAmount;
+        this.transactionDate = transactionDate;
+    }
 
     public Long getId() {
         return id;
@@ -42,12 +55,4 @@ public class SaleTransaction {
     public void setTransactionDate(Instant transactionDate) {
         this.transactionDate = transactionDate;
     }
-    public SaleTransaction(Long id,String discountCode,BigDecimal saleAmount,Timestamp transactionDate)
-    this.id=id;
-    this.discountCode=discountCode;
-    this.saleAmount=saleAmount;
-    this.transactionDate=transactionDate;
-}
-public SaleTransaction(){
-
 }
