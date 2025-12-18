@@ -7,8 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
-import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 public class Campaign {
@@ -29,12 +29,15 @@ public class Campaign {
 
     private Boolean active;
 
-    // Constructors
     public Campaign() {
     }
 
-    public Campaign(Long id, String campaignName, Date startDate, Date endDate,
-                    BigDecimal budget, Boolean active) {
+    public Campaign(Long id,
+                    String campaignName,
+                    Date startDate,
+                    Date endDate,
+                    BigDecimal budget,
+                    Boolean active) {
         this.id = id;
         this.campaignName = campaignName;
         this.startDate = startDate;
@@ -43,7 +46,6 @@ public class Campaign {
         this.active = active;
     }
 
-    // Getters & Setters
     public Long getId() {
         return id;
     }
