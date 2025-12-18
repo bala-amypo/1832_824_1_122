@@ -1,58 +1,8 @@
-// package com.example.demo.dto;
+package com.example.demo.repository;
+ 
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.demo.model.SaleTransaction;
 
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.Id;
-// import java.math.BigDecimal;
-// import java.time.Instant;
-
-// @Entity
-// public class SaleTransaction {
-
-//     @Id
-//     private Long id;
-//     private String discountCode;
-//     private BigDecimal saleAmount;
-//     private Instant transactionDate;
-
-//     public SaleTransaction() {
-//     }
-
-//     public SaleTransaction(Long id, String discountCode, BigDecimal saleAmount, Instant transactionDate) {
-//         this.id = id;
-//         this.discountCode = discountCode;
-//         this.saleAmount = saleAmount;
-//         this.transactionDate = transactionDate;
-//     }
-
-//     public Long getId() {
-//         return id;
-//     }
-
-//     public void setId(Long id) {
-//         this.id = id;
-//     }
-
-//     public String getDiscountCode() {
-//         return discountCode;
-//     }
-
-//     public void setDiscountCode(String discountCode) {
-//         this.discountCode = discountCode;
-//     }
-
-//     public BigDecimal getSaleAmount() {
-//         return saleAmount;
-//     }
-
-//     public void setSaleAmount(BigDecimal saleAmount) {
-//         this.saleAmount = saleAmount;
-//     }
-
-//     public Instant getTransactionDate() {
-//         return transactionDate;
-//     }
-
-//     public void setTransactionDate(Instant transactionDate) {
-//         this.transactionDate = transactionDate;
-//     }
-// }
+public interface SaleTransactionRepository extends JpaRepository<SaleTransaction,Long>{
+    
+}
