@@ -1,6 +1,6 @@
-package com.example.demo.dto;
-import jakarta.presistence.Entity;
-import jakarta.presistence.Id;
+package com.example.demo.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 @Entity
 public class Campaign{
     @Id
@@ -23,7 +23,7 @@ public class Campaign{
         return campaignName;
     }
 
-    public void setcampaignName(String campaignName){
+    public void setCampaignName(String campaignName){
         this.campaignName=campaignName;
     }
 
@@ -39,12 +39,12 @@ public class Campaign{
         return EndDate;
     }
 
-    public void setEnDate(Date endDate){
+    public void setEndDate(Date endDate){
         this.endDate=endDate;
     }
 
     public BigDecimal getBudget(){
-        return getBudget;
+        return Budget;
     }
 
     public void setBudget(BigDecimal budget){
