@@ -1,19 +1,19 @@
 package com.example.demo.service.impl;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.entity.;
-import com.example.demo.service.AssignmentEvaluationService;
+import com.example.demo.entity.User;
+import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Service
-public class AssignmentEvaluationServiceImpl implements AssignmentEvaluationService{
+public class UserServiceImpl implements UserService{
 
 @Autowired
-AssignmentEvaluationRepository aer;
-public AssignmentEvaluation createAssignmentEvaluation(AssignmentEvaluation ae){
+UserRepository us;
+public User createUser(User us){
 
-    return aer.save(ae);
+    return aer.save(us);
 }
 
 
