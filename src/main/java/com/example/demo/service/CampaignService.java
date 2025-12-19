@@ -1,9 +1,9 @@
 package com.example.demo.service;
-import com.example.demo.entity.TaskAssignment;
+import com.example.demo.entity.Campaign;
 
-public interface   TaskAssignmentService
+public interface   CampaignService
 {
-    TaskAssignmentServices createTaskAssignment(TaskAssignment ts);
+    CampaignServices createTaskAssignment(Campaign cm);
 
 
 }
