@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class RoiServiceImpl implements RoiService{
 
 @Autowired
-RoiRepository ;
-public AssignmentEvaluation createAssignmentEvaluation(AssignmentEvaluation ae){
+RoiRepository ri;
+public Roi createRoi( ri){
 
-    return aer.save(ae);
+    return aer.save(ri);
 }
 
 
