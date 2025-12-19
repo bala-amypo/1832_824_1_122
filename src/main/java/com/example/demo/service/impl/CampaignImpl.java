@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CampaignImpl implements CampaignService{
 
 @Autowired
-AssignmentEvaluationRepository aer;
-public AssignmentEvaluation createAssignmentEvaluation(AssignmentEvaluation ae){
+Campaign cm ;
+public Campaign createCampaign(Campaign cm){
 
-    return aer.save(ae);
+    return aer.save(cm);
 }
 
 
