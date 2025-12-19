@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class RoiServiceImpl implements RoiService{
 
 @Autowired
-RoiRepository ri;
+RoiRepository ri; 
 public Roi createRoi( ri){
 
     return aer.save(ri);
