@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class InfluencerServiceImpl implements InfluencerService{
 
 @Autowired
-AssignmentEvaluationRepository aer;
-public AssignmentEvaluation createAssignmentEvaluation(AssignmentEvaluation ae){
+InfluencerRepository in;
+public Influencer createInfluencer(Influencer in){
 
-    return aer.save(ae);
+    return aer.save(in);
 }
 
 
