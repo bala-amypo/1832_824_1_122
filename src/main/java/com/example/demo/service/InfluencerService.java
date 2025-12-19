@@ -3,7 +3,7 @@ import com.example.demo.entity.Influencer;
 
 public interface   InfluencerService
 {
-    InfluencerServices createTaskAssignment(Influencer in);
+    InfluencerServices createInfluencer(Influencer in);
 
 
 }

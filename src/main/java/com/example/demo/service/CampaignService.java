@@ -3,7 +3,7 @@ import com.example.demo.entity.Campaign;
 
 public interface   CampaignService
 {
-    CampaignServices createTaskAssignment(Campaign cm);
+    CampaignServices createCampaign(Campaign cm);
 
 
 }

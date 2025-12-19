@@ -3,7 +3,7 @@ import com.example.demo.entity.DiscountCode;
 
 public interface   DiscountCodeService
 {
-    DiscountCodeServices createTaskAssignment(DiscountCode ds);
+    DiscountCodeServices createDiscountCode(DiscountCode ds);
 
 
 }
