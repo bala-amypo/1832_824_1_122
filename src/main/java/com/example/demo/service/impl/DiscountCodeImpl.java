@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class DiscountCodeServiceImpl implements DiscountCodeService{
 
 @Autowired
-DiscountCodeRepository ds;
-public  createAssignmentEvaluation(AssignmentEvaluation ae){
+DiscountCodeRepository dc;
+public DiscountCode createDiscountCode(DiscountCode dc){
 
-    return aer.save(ds);
+    return aer.save(dc);
 }
 
 
