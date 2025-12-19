@@ -11,9 +11,9 @@ public class SaleTransactionServiceImpl implements SaleTransactionService{
 
 @Autowired
 SaleTransactionRepository st;
-public AssignmentEvaluation createAssignmentEvaluation(AssignmentEvaluation ae){
+public SaleTransaction createSaleTransaction(SaleTransaction st){
 
-    return aer.save(ae);
+    return aer.save(st);
 }
 
 
