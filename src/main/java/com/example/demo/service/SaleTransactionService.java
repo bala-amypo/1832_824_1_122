@@ -1,9 +1,9 @@
 package com.example.demo.service;
-import com.example.demo.entity.TaskAssignment;
+import com.example.demo.entity.SaleTransaction;
 
-public interface   TaskAssignmentService
+public interface   SaleTransactionService
 {
-    SaleTranServices createTaskAssignment(TaskAssignment ts);
+    SaleTransactionServices createSaleTransaction(SaleTransaction st);
 
 
 }
