@@ -1,0 +1,53 @@
+package com.example.demo.service.impl;
+
+import com.example.demo.entity.DiscountCode;
+import com.example.demo.repository.DiscountCodeRepository;
+import com.example.demo.service.DiscountCodeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class DiscountCodeServiceImpl implements DiscountCodeService {
+
+    @Autowired
+    private DiscountCodeRepository discountCodeRepository;
+
+    @Override
+    public DiscountCode createDiscountCode(DiscountCode code) {
+        code.setActive(true);
+        return discountCodeRepository.save(code);
+    }
+
+    @Override
+    public DiscountCode updateDiscountCode(Long id, DiscountCode code) {
+        DiscountCode existing = getCodeById(id);
+        existing.setCode(code.getCode());
+        existing.setDiscountPercent(code.getDiscountPercent());
+        return discountCodeRepository.save(existing);
+    }
+
+    @Override
+    public DiscountCode getCodeById(Long id) {
+        return discountCodeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Code not found"));
+    }
+
+    @Override
+    public List<DiscountCode> getCodesByInfluencer(Long influencerId) {
+        return discountCodeRepository.findByInfluencerId(influencerId);
+    }
+
+    @Override
+    public List<DiscountCode> getCodesByCampaign(Long campaignId) {
+        return discountCodeRepository.findByCampaignId(campaignId);
+    }
+
+    @Override
+    public void deactivateCode(Long id) {
+        DiscountCode code = getCodeById(id);
+        code.setActive(false);
+        discountCodeRepository.save(code);
+    }
+}
