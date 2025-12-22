@@ -1,35 +1,49 @@
-// @RestController
-// @RequestMapping("/api/discount-codes")
-// @RequiredArgsConstructor
-// @Tag(name = "Discount Codes")
-// public class DiscountCodeController {
+package com.example.demo.controller;
 
-//     private final DiscountCodeService discountCodeService;
+import com.example.demo.entity.DiscountCode;
+import com.example.demo.service.DiscountCodeService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-//     @PostMapping
-//     public DiscountCode create(@RequestParam Long influencerId,
-//                                @RequestParam Long campaignId,
-//                                @RequestBody DiscountCode code) {
-//         return discountCodeService.createCode(code, influencerId, campaignId);
-//     }
+import java.util.List;
 
-//     @GetMapping("/{id}")
-//     public DiscountCode getById(@PathVariable Long id) {
-//         return discountCodeService.getById(id);
-//     }
+@RestController
+@RequestMapping("/api/discount-codes")
+@Tag(name = "Discount Codes")
+public class DiscountCodeController {
 
-//     @GetMapping("/influencer/{influencerId}")
-//     public List<DiscountCode> byInfluencer(@PathVariable Long influencerId) {
-//         return discountCodeService.getByInfluencer(influencerId);
-//     }
+    @Autowired
+    private DiscountCodeService discountCodeService;
 
-//     @GetMapping("/campaign/{campaignId}")
-//     public List<DiscountCode> byCampaign(@PathVariable Long campaignId) {
-//         return discountCodeService.getByCampaign(campaignId);
-//     }
+    @PostMapping
+    public DiscountCode createCode(@RequestBody DiscountCode code) {
+        return discountCodeService.createDiscountCode(code);
+    }
 
-//     @PutMapping("/{id}/deactivate")
-//     public void deactivate(@PathVariable Long id) {
-//         discountCodeService.deactivate(id);
-//     }
-// }
+    @PutMapping("/{id}")
+    public DiscountCode updateCode(@PathVariable Long id,
+                                   @RequestBody DiscountCode code) {
+        return discountCodeService.updateDiscountCode(id, code);
+    }
+
+    @GetMapping("/{id}")
+    public DiscountCode getCode(@PathVariable Long id) {
+        return discountCodeService.getCodeById(id);
+    }
+
+    @GetMapping("/influencer/{influencerId}")
+    public List<DiscountCode> getCodesByInfluencer(@PathVariable Long influencerId) {
+        return discountCodeService.getCodesByInfluencer(influencerId);
+    }
+
+    @GetMapping("/campaign/{campaignId}")
+    public List<DiscountCode> getCodesByCampaign(@PathVariable Long campaignId) {
+        return discountCodeService.getCodesByCampaign(campaignId);
+    }
+
+    @PutMapping("/{id}/deactivate")
+    public void deactivateCode(@PathVariable Long id) {
+        discountCodeService.deactivateCode(id);
+    }
+}

@@ -1,28 +1,38 @@
-// @RestController
-// @RequestMapping("/api/roi")
-// @RequiredArgsConstructor
-// @Tag(name = "ROI Reports")
-// public class RoiReportController {
+package com.example.demo.controller;
 
-//     private final RoiReportService roiReportService;
+import com.example.demo.entity.RoiReport;
+import com.example.demo.service.RoiService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-//     @PostMapping("/generate/{codeId}")
-//     public RoiReport generate(@PathVariable Long codeId) {
-//         return roiReportService.generate(codeId);
-//     }
+import java.util.List;
 
-//     @GetMapping("/{id}")
-//     public RoiReport getById(@PathVariable Long id) {
-//         return roiReportService.getById(id);
-//     }
+@RestController
+@RequestMapping("/api/roi")
+@Tag(name = "ROI Reports")
+public class RoiReportController {
 
-//     @GetMapping("/influencer/{influencerId}")
-//     public List<RoiReport> byInfluencer(@PathVariable Long influencerId) {
-//         return roiReportService.getByInfluencer(influencerId);
-//     }
+    @Autowired
+    private RoiService roiService;
 
-//     @GetMapping("/campaign/{campaignId}")
-//     public List<RoiReport> byCampaign(@PathVariable Long campaignId) {
-//         return roiReportService.getByCampaign(campaignId);
-//     }
-// }
+    @PostMapping("/generate/{codeId}")
+    public RoiReport generateRoi(@PathVariable Long codeId) {
+        return roiService.generateRoiForCode(codeId);
+    }
+
+    @GetMapping("/{id}")
+    public RoiReport getReport(@PathVariable Long id) {
+        return roiService.getReportById(id);
+    }
+
+    @GetMapping("/influencer/{influencerId}")
+    public List<RoiReport> getReportsByInfluencer(@PathVariable Long influencerId) {
+        return roiService.getReportsForInfluencer(influencerId);
+    }
+
+    @GetMapping("/campaign/{campaignId}")
+    public List<RoiReport> getReportsByCampaign(@PathVariable Long campaignId) {
+        return roiService.getReportsForCampaign(campaignId);
+    }
+}

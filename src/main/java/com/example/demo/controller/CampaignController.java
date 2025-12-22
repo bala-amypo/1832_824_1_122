@@ -1,34 +1,44 @@
-// @RestController
-// @RequestMapping("/api/campaigns")
-// @RequiredArgsConstructor
-// @Tag(name = "Campaigns")
-// public class CampaignController {
+package com.example.demo.controller;
 
-//     private final CampaignService campaignService;
+import com.example.demo.entity.Campaign;
+import com.example.demo.service.CampaignService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-//     @PostMapping
-//     public Campaign create(@RequestBody Campaign campaign) {
-//         return campaignService.createCampaign(campaign);
-//     }
+import java.util.List;
 
-//     @GetMapping("/{id}")
-//     public Campaign getById(@PathVariable Long id) {
-//         return campaignService.getById(id);
-//     }
+@RestController
+@RequestMapping("/api/campaigns")
+@Tag(name = "Campaigns")
+public class CampaignController {
 
-//     @GetMapping
-//     public List<Campaign> getAll() {
-//         return campaignService.getAll();
-//     }
+    @Autowired
+    private CampaignService campaignService;
 
-//     @PutMapping("/{id}")
-//     public Campaign update(@PathVariable Long id,
-//                            @RequestBody Campaign campaign) {
-//         return campaignService.update(id, campaign);
-//     }
+    @PostMapping
+    public Campaign createCampaign(@RequestBody Campaign campaign) {
+        return campaignService.createCampaign(campaign);
+    }
 
-//     @PutMapping("/{id}/deactivate")
-//     public void deactivate(@PathVariable Long id) {
-//         campaignService.deactivate(id);
-//     }
-// }
+    @PutMapping("/{id}")
+    public Campaign updateCampaign(@PathVariable Long id,
+                                   @RequestBody Campaign campaign) {
+        return campaignService.updateCampaign(id, campaign);
+    }
+
+    @GetMapping("/{id}")
+    public Campaign getCampaign(@PathVariable Long id) {
+        return campaignService.getCampaignById(id);
+    }
+
+    @GetMapping
+    public List<Campaign> getAllCampaigns() {
+        return campaignService.getAllCampaigns();
+    }
+
+    @PutMapping("/{id}/deactivate")
+    public void deactivateCampaign(@PathVariable Long id) {
+        campaignService.deactivateCampaign(id);
+    }
+}
