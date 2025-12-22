@@ -1,8 +1,1 @@
-package com.example.demo.repository;
- 
-import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.demo.model.RoiReport;
-
-public interface RoiReportRepository extends JpaRepository<RoiReport,Long>{
-    
-}
+public interface RoiReportRepository extends JpaRepository<RoiReport, Long> {}
