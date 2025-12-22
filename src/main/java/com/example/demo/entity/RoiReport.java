@@ -1,11 +1,61 @@
+package com.example.demo.entity;
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+
 @Entity
+@Table(name = "roi_reports")
 public class RoiReport {
-@Id @GeneratedValue
-private Long id;
-private Double revenue;
-private Double roi;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@ManyToOne
-private DiscountCode discountCode;
+    @ManyToOne
+    @JoinColumn(name = "campaign_id", nullable = true)
+    private Campaign campaign;
+
+    @ManyToOne
+    @JoinColumn(name = "influencer_id", nullable = true)
+    private Influencer influencer;
+
+    private BigDecimal totalSales;
+    private BigDecimal totalRevenue;
+    private BigDecimal roiPercentage;
+
+    private Timestamp generatedAt;
+
+    public RoiReport() {
+    }
+
+    public RoiReport(Campaign campaign, Influencer influencer,
+                     BigDecimal totalSales, BigDecimal totalRevenue, BigDecimal roiPercentage) {
+        this.campaign = campaign;
+        this.influencer = influencer;
+        this.totalSales = totalSales;
+        this.totalRevenue = totalRevenue;
+        this.roiPercentage = roiPercentage;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.generatedAt = new Timestamp(System.currentTimeMillis());
+    }
+
+    // getters & setters
+    public Long getId() { return id; }
+    public Campaign getCampaign() { return campaign; }
+    public Influencer getInfluencer() { return influencer; }
+    public BigDecimal getTotalSales() { return totalSales; }
+    public BigDecimal getTotalRevenue() { return totalRevenue; }
+    public BigDecimal getRoiPercentage() { return roiPercentage; }
+    public Timestamp getGeneratedAt() { return generatedAt; }
+
+    public void setId(Long id) { this.id = id; }
+    public void setCampaign(Campaign campaign) { this.campaign = campaign; }
+    public void setInfluencer(Influencer influencer) { this.influencer = influencer; }
+    public void setTotalSales(BigDecimal totalSales) { this.totalSales = totalSales; }
+    public void setTotalRevenue(BigDecimal totalRevenue) { this.totalRevenue = totalRevenue; }
+    public void setRoiPercentage(BigDecimal roiPercentage) { this.roiPercentage = roiPercentage; }
 }
