@@ -1,34 +1,44 @@
-// @RestController
-// @RequestMapping("/api/influencers")
-// @RequiredArgsConstructor
-// @Tag(name = "Influencers")
-// public class InfluencerController {
+package com.example.demo.controller;
 
-//     private final InfluencerService influencerService;
+import com.example.demo.entity.Influencer;
+import com.example.demo.service.InfluencerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-//     @PostMapping
-//     public Influencer create(@RequestBody Influencer influencer) {
-//         return influencerService.createInfluencer(influencer);
-//     }
+import java.util.List;
 
-//     @GetMapping("/{id}")
-//     public Influencer getById(@PathVariable Long id) {
-//         return influencerService.getById(id);
-//     }
+@RestController
+@RequestMapping("/api/influencers")
+@Tag(name = "Influencers")
+public class InfluencerController {
 
-//     @GetMapping
-//     public List<Influencer> getAll() {
-//         return influencerService.getAll();
-//     }
+    @Autowired
+    private InfluencerService influencerService;
 
-//     @PutMapping("/{id}")
-//     public Influencer update(@PathVariable Long id,
-//                              @RequestBody Influencer influencer) {
-//         return influencerService.update(id, influencer);
-//     }
+    @PostMapping
+    public Influencer createInfluencer(@RequestBody Influencer influencer) {
+        return influencerService.createInfluencer(influencer);
+    }
 
-//     @PutMapping("/{id}/deactivate")
-//     public void deactivate(@PathVariable Long id) {
-//         influencerService.deactivate(id);
-//     }
-// }
+    @PutMapping("/{id}")
+    public Influencer updateInfluencer(@PathVariable Long id,
+                                       @RequestBody Influencer influencer) {
+        return influencerService.updateInfluencer(id, influencer);
+    }
+
+    @GetMapping("/{id}")
+    public Influencer getInfluencer(@PathVariable Long id) {
+        return influencerService.getInfluencerById(id);
+    }
+
+    @GetMapping
+    public List<Influencer> getAllInfluencers() {
+        return influencerService.getAllInfluencers();
+    }
+
+    @PutMapping("/{id}/deactivate")
+    public void deactivateInfluencer(@PathVariable Long id) {
+        influencerService.deactivateInfluencer(id);
+    }
+}
