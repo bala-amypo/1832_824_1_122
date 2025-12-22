@@ -1,35 +1,17 @@
-@Service
-@RequiredArgsConstructor
-public class InfluencerService {
+package com.example.demo.service;
 
-    private final InfluencerRepository influencerRepository;
+import com.example.demo.entity.Influencer;
+import java.util.List;
 
-    public Influencer createInfluencer(Influencer influencer) {
-        influencer.setActive(true);
-        return influencerRepository.save(influencer);
-    }
+public interface InfluencerService {
 
-    public Influencer getById(Long id) {
-        return influencerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Influencer not found"));
-    }
+    Influencer createInfluencer(Influencer influencer);
 
-    public List<Influencer> getAll() {
-        return influencerRepository.findAll();
-    }
+    Influencer updateInfluencer(Long id, Influencer influencer);
 
-    public Influencer update(Long id, Influencer updated) {
-        Influencer existing = getById(id);
-        existing.setName(updated.getName());
-        existing.setEmail(updated.getEmail());
-        existing.setPlatform(updated.getPlatform());
-        existing.setFollowerCount(updated.getFollowerCount());
-        return influencerRepository.save(existing);
-    }
+    Influencer getInfluencerById(Long id);
 
-    public void deactivate(Long id) {
-        Influencer influencer = getById(id);
-        influencer.setActive(false);
-        influencerRepository.save(influencer);
-    }
+    List<Influencer> getAllInfluencers();
+
+    void deactivateInfluencer(Long id);
 }
