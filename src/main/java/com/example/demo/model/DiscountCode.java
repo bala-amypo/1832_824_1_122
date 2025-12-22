@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.modelcd ;
 import jakarta.presistence.Entity;
 import jakarta.presistence.Id;
 @Entity
@@ -58,7 +58,7 @@ public class DiscountCode {
     public void setActive(Boolean active) {
         this.active = active;
     }
-public DiscountCode(Long id,String code,String Influencer,String campaign,Double discountPercentage,Boolean active)
+public DiscountCode(Long id,String code,String Influencer,String campaign,Double discountPercentage,Boolean active){
 this.id=id;
 this.code-code;
 this.Influencer=Influencer;
@@ -68,4 +68,5 @@ this.active=active;
 }
 public DiscountCode(){
 
+}
 }
