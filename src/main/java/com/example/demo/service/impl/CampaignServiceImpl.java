@@ -23,7 +23,9 @@ public class CampaignServiceImpl implements CampaignService {
     @Override
     public Campaign updateCampaign(Long id, Campaign campaign) {
         Campaign existing = getCampaignById(id);
-        existing.setName(campaign.getName());
+        existing.setCampaignName(campaign.getCampaignName());
+        existing.setStartDate(campaign.getStartDate());
+        existing.setEndDate(campaign.getEndDate());
         existing.setBudget(campaign.getBudget());
         return campaignRepository.save(existing);
     }

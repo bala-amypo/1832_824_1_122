@@ -21,12 +21,12 @@ public class SaleTransactionServiceImpl implements SaleTransactionService {
 
     @Override
     public SaleTransaction logTransaction(SaleTransaction transaction) {
-        DiscountCode code = discountCodeRepository.findById(
-                transaction.getDiscountCode().getId())
-                .orElseThrow(() -> new RuntimeException("Invalid discount code"));
+        DiscountCode code = discountCodeRepository
+                .findById(transaction.getDiscountCode().getId())
+                .orElseThrow(() -> new RuntimeException("Invalid code"));
 
-        if (!code.isActive()) {
-            throw new RuntimeException("Discount code inactive");
+        if (!code.getActive()) {
+            throw new RuntimeException("Inactive discount code");
         }
         return transactionRepository.save(transaction);
     }
@@ -39,16 +39,16 @@ public class SaleTransactionServiceImpl implements SaleTransactionService {
 
     @Override
     public List<SaleTransaction> getSalesForCode(Long codeId) {
-        return transactionRepository.findByDiscountCodeId(codeId);
+        return transactionRepository.findByDiscountCode_Id(codeId);
     }
 
     @Override
     public List<SaleTransaction> getSalesForInfluencer(Long influencerId) {
-        return transactionRepository.findByInfluencerId(influencerId);
+        return transactionRepository.findByDiscountCode_Influencer_Id(influencerId);
     }
 
     @Override
     public List<SaleTransaction> getSalesForCampaign(Long campaignId) {
-        return transactionRepository.findByCampaignId(campaignId);
+        return transactionRepository.findByDiscountCode_Campaign_Id(campaignId);
     }
 }

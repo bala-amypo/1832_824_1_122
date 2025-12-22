@@ -24,7 +24,7 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
     public DiscountCode updateDiscountCode(Long id, DiscountCode code) {
         DiscountCode existing = getCodeById(id);
         existing.setCode(code.getCode());
-        existing.setDiscountPercent(code.getDiscountPercent());
+        existing.setDiscountPercentage(code.getDiscountPercentage());
         return discountCodeRepository.save(existing);
     }
 
@@ -36,12 +36,12 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
 
     @Override
     public List<DiscountCode> getCodesByInfluencer(Long influencerId) {
-        return discountCodeRepository.findByInfluencerId(influencerId);
+        return discountCodeRepository.findByInfluencer_Id(influencerId);
     }
 
     @Override
     public List<DiscountCode> getCodesByCampaign(Long campaignId) {
-        return discountCodeRepository.findByCampaignId(campaignId);
+        return discountCodeRepository.findByCampaign_Id(campaignId);
     }
 
     @Override
