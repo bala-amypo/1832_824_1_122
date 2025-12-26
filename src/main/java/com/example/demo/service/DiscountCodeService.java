@@ -1,73 +1,15 @@
-package com.example.demo.model;
+package com.example.demo.service;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.example.demo.model.DiscountCode;
+import java.util.List;
 
-@Entity
-@Table(name = "discount_codes")
-public class DiscountCode {
+public interface DiscountCodeService {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    DiscountCode createDiscountCode(DiscountCode discountCode);
 
-    private String code;
+    DiscountCode updateDiscountCode(Long id, DiscountCode discountCode);
 
-    private Double discountPercentage;
+    List<DiscountCode> getCodesForInfluencer(Long influencerId);
 
-    @ManyToOne
-    @JoinColumn(name = "campaign_id")
-    private Campaign campaign;
-
-    @ManyToOne
-    @JoinColumn(name = "influencer_id")
-    private Influencer influencer;
-
-    public DiscountCode() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public Double getDiscountPercentage() {
-        return discountPercentage;
-    }
-
-    public Campaign getCampaign() {
-        return campaign;
-    }
-
-    public Influencer getInfluencer() {
-        return influencer;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setDiscountPercentage(Double discountPercentage) {
-        this.discountPercentage = discountPercentage;
-    }
-
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
-    }
-
-    public void setInfluencer(Influencer influencer) {
-        this.influencer = influencer;
-    }
+    List<DiscountCode> getCodesForCampaign(Long campaignId);
 }
