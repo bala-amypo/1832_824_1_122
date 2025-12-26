@@ -1,8 +1,9 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.Influencer;
+import com.example.demo.model.Influencer;
 import com.example.demo.repository.InfluencerRepository;
 import com.example.demo.service.InfluencerService;
+
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,18 @@ public class InfluencerServiceImpl implements InfluencerService {
     }
 
     @Override
+    public Influencer updateInfluencer(Long id, Influencer influencer) {
+        Influencer existing = influencerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Influencer not found"));
+        existing.setName(influencer.getName());
+        existing.setEmail(influencer.getEmail());
+        return influencerRepository.save(existing);
+    }
+
+    @Override
     public Influencer getInfluencerById(Long id) {
         return influencerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Influencer not found with id " + id));
+                .orElseThrow(() -> new RuntimeException("Influencer not found"));
     }
 
     @Override
@@ -32,15 +42,11 @@ public class InfluencerServiceImpl implements InfluencerService {
     }
 
     @Override
-    public Influencer updateInfluencer(Long id, Influencer influencer) {
-        Influencer existing = getInfluencerById(id);
-        existing.setName(influencer.getName());
-        existing.setPlatform(influencer.getPlatform());
-        return influencerRepository.save(existing);
-    }
-
-    @Override
-    public void deleteInfluencer(Long id) {
-        influencerRepository.deleteById(id);
+    public void deactivateInfluencer(Long id) {
+        Influencer inf = getInfluencerById(id);
+        inf.setActive(false);
+        influencerRepository.save(inf);
     }
 }
+
+
