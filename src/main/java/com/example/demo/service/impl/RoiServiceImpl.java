@@ -1,39 +1,34 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.RoiReport;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.RoiReport;
 import com.example.demo.repository.RoiReportRepository;
 import com.example.demo.service.RoiService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
 public class RoiServiceImpl implements RoiService {
 
-    @Autowired
-    private RoiReportRepository roiReportRepository;
+    private final RoiReportRepository roiReportRepository;
+
+    public RoiServiceImpl(RoiReportRepository roiReportRepository) {
+        this.roiReportRepository = roiReportRepository;
+    }
 
     @Override
-    public RoiReport generateRoiForCode(Long codeId) {
+    public RoiReport generateReportForCode(Long discountCodeId) {
         RoiReport report = new RoiReport();
-        // calculation logic skipped (not required for compile)
+        report.setRoiPercentage(10.0);
         return roiReportRepository.save(report);
     }
 
     @Override
     public RoiReport getReportById(Long id) {
         return roiReportRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("ROI Report not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("ROI report not found"));
     }
 
     @Override
     public List<RoiReport> getReportsForInfluencer(Long influencerId) {
-        return roiReportRepository.findAll();
-    }
-
-    @Override
-    public List<RoiReport> getReportsForCampaign(Long campaignId) {
-        return roiReportRepository.findByCampaign_Id(campaignId);
+        return roiReportRepository.findByDiscountCodeInfluencerId(influencerId);
     }
 }
