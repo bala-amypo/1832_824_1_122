@@ -1,11 +1,33 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import com.example.demo.entity.DiscountCode;
+import com.example.demo.repository.DiscountCodeRepository;
+import com.example.demo.service.DiscountCodeService;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
-public interface DiscountCodeService {
+@Service
+public class DiscountCodeServiceImpl implements DiscountCodeService {
 
-    DiscountCode create(DiscountCode code);
-    DiscountCode getById(Long id);
-    List<DiscountCode> getAll();
+    private final DiscountCodeRepository repository;
+
+    public DiscountCodeServiceImpl(DiscountCodeRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public DiscountCode create(DiscountCode code) {
+        return repository.save(code);
+    }
+
+    @Override
+    public DiscountCode getById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<DiscountCode> getAll() {
+        return repository.findAll();
+    }
 }
