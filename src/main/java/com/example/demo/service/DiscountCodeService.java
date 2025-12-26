@@ -1,55 +1,73 @@
-package com.example.demo.service;
+package com.example.demo.model;
 
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.DiscountCode;
-import com.example.demo.repository.DiscountCodeRepository;
-import java.util.List;
-import org.springframework.stereotype.Service;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-@Service
-public class DiscountCodeService {
+@Entity
+@Table(name = "discount_codes")
+public class DiscountCode {
 
-    private final DiscountCodeRepository discountCodeRepository;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public DiscountCodeService(DiscountCodeRepository discountCodeRepository) {
-        this.discountCodeRepository = discountCodeRepository;
+    private String code;
+
+    private Double discountPercentage;
+
+    @ManyToOne
+    @JoinColumn(name = "campaign_id")
+    private Campaign campaign;
+
+    @ManyToOne
+    @JoinColumn(name = "influencer_id")
+    private Influencer influencer;
+
+    public DiscountCode() {
     }
 
-    public DiscountCode createDiscountCode(DiscountCode discountCode) {
-        return discountCodeRepository.save(discountCode);
+    public Long getId() {
+        return id;
     }
 
-    public DiscountCode updateDiscountCode(Long id, DiscountCode updated) {
-        DiscountCode existing = getDiscountCodeById(id);
-
-        existing.setCode(updated.getCode());
-        existing.setDiscountPercentage(updated.getDiscountPercentage());
-        existing.setCampaign(updated.getCampaign());
-        existing.setInfluencer(updated.getInfluencer());
-
-        return discountCodeRepository.save(existing);
+    public String getCode() {
+        return code;
     }
 
-    public DiscountCode getDiscountCodeById(Long id) {
-        return discountCodeRepository.findById(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Discount code not found"));
+    public Double getDiscountPercentage() {
+        return discountPercentage;
     }
 
-    public List<DiscountCode> getCodesForInfluencer(Long influencerId) {
-        return discountCodeRepository.findByInfluencerId(influencerId);
+    public Campaign getCampaign() {
+        return campaign;
     }
 
-    public List<DiscountCode> getCodesForCampaign(Long campaignId) {
-        return discountCodeRepository.findByCampaignId(campaignId);
+    public Influencer getInfluencer() {
+        return influencer;
     }
 
-    public List<DiscountCode> getAllDiscountCodes() {
-        return discountCodeRepository.findAll();
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void deleteDiscountCode(Long id) {
-        DiscountCode discountCode = getDiscountCodeById(id);
-        discountCodeRepository.delete(discountCode);
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setDiscountPercentage(Double discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
+    }
+
+    public void setInfluencer(Influencer influencer) {
+        this.influencer = influencer;
     }
 }
