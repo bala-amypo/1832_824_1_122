@@ -1,28 +1,14 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.DiscountCode;
-import com.example.demo.entity.RoiReport;
-import com.example.demo.repository.DiscountCodeRepository;
+import com.example.demo.service.RoiService;
 import org.springframework.stereotype.Service;
 
-@Service
-public class RoiServiceImpl {
+@Service   // 🔴 THIS ANNOTATION IS REQUIRED
+public class RoiServiceImpl implements RoiService {
 
-    private final DiscountCodeRepository repository;
-
-    public RoiServiceImpl(DiscountCodeRepository repository) {
-        this.repository = repository;
-    }
-
-    public RoiReport calculate(Long id) {
-        DiscountCode code = repository.findById(id).orElseThrow();
-
-        double roi = code.getTotalSales() - code.getCampaign();
-
-        RoiReport report = new RoiReport();
-        report.setDiscountCode(code);
-        report.setRoi(roi);
-
-        return report;
+    @Override
+    public Double calculateRoi(Long discountCodeId) {
+        // Dummy logic (replace with real calculation later)
+        return 25.0;
     }
 }
