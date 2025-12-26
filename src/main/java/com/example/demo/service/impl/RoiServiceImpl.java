@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.DiscountCode;
-import com.example.demo.model.RoiReport;
+import com.example.demo.entity.DiscountCode;
+import com.example.demo.entity.RoiReport;
 import com.example.demo.repository.DiscountCodeRepository;
 import com.example.demo.repository.RoiReportRepository;
 import com.example.demo.service.RoiService;
