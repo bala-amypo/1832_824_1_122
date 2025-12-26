@@ -1,38 +1,43 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.RoiReport;
+import com.example.demo.model.RoiReport;
 import com.example.demo.service.RoiService;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/roi")
-@Tag(name = "ROI Reports")
+@RequestMapping("/roi")
 public class RoiReportController {
 
-    @Autowired
-    private RoiService roiService;
+    private final RoiService roiService;
 
-    @PostMapping("/generate/{codeId}")
-    public RoiReport generateRoi(@PathVariable Long codeId) {
-        return roiService.generateRoiForCode(codeId);
+    public RoiReportController(RoiService roiService) {
+        this.roiService = roiService;
     }
 
-    @GetMapping("/{id}")
-    public RoiReport getReport(@PathVariable Long id) {
-        return roiService.getReportById(id);
+    @PostMapping("/code/{discountCodeId}")
+    public ResponseEntity<RoiReport> generateReportForCode(
+            @PathVariable Long discountCodeId) {
+
+        return ResponseEntity.ok(
+                roiService.generateReportForCode(discountCodeId));
+    }
+
+    @GetMapping("/{reportId}")
+    public ResponseEntity<RoiReport> getReport(@PathVariable Long reportId) {
+        return ResponseEntity.ok(roiService.getReportById(reportId));
     }
 
     @GetMapping("/influencer/{influencerId}")
-    public List<RoiReport> getReportsByInfluencer(@PathVariable Long influencerId) {
-        return roiService.getReportsForInfluencer(influencerId);
-    }
+    public ResponseEntity<List<RoiReport>> getReportsForInfluencer(
+            @PathVariable Long influencerId) {
 
-    @GetMapping("/campaign/{campaignId}")
-    public List<RoiReport> getReportsByCampaign(@PathVariable Long campaignId) {
-        return roiService.getReportsForCampaign(campaignId);
+        return ResponseEntity.ok(
+                roiService.getReportsForInfluencer(influencerId));
     }
 }

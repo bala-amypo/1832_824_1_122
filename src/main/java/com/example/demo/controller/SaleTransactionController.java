@@ -1,34 +1,54 @@
-// @RestController
-// @RequestMapping("/api/sales")
-// @RequiredArgsConstructor
-// @Tag(name = "Sales Transactions")
-// public class SaleTransactionController {
+package com.example.demo.controller;
 
-//     private final SaleTransactionService saleTransactionService;
+import com.example.demo.model.SaleTransaction;
+import com.example.demo.service.SaleTransactionService;
+import java.util.List;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-//     @PostMapping
-//     public SaleTransaction logSale(@RequestParam Long discountCodeId,
-//                                    @RequestParam Double amount) {
-//         return saleTransactionService.logSale(discountCodeId, amount);
-//     }
+@RestController
+@RequestMapping("/sales")
+public class SaleTransactionController {
 
-//     @GetMapping("/{id}")
-//     public SaleTransaction getById(@PathVariable Long id) {
-//         return saleTransactionService.getById(id);
-//     }
+    private final SaleTransactionService saleTransactionService;
 
-//     @GetMapping("/code/{codeId}")
-//     public List<SaleTransaction> byDiscountCode(@PathVariable Long codeId) {
-//         return saleTransactionService.getByDiscountCode(codeId);
-//     }
+    public SaleTransactionController(SaleTransactionService saleTransactionService) {
+        this.saleTransactionService = saleTransactionService;
+    }
 
-//     @GetMapping("/influencer/{influencerId}")
-//     public List<SaleTransaction> byInfluencer(@PathVariable Long influencerId) {
-//         return saleTransactionService.getByInfluencer(influencerId);
-//     }
+    @PostMapping
+    public ResponseEntity<SaleTransaction> createSale(
+            @RequestBody SaleTransaction transaction) {
 
-//     @GetMapping("/campaign/{campaignId}")
-//     public List<SaleTransaction> byCampaign(@PathVariable Long campaignId) {
-//         return saleTransactionService.getByCampaign(campaignId);
-//     }
-// }
+        return ResponseEntity.ok(saleTransactionService.createSale(transaction));
+    }
+
+    @GetMapping("/code/{discountCodeId}")
+    public ResponseEntity<List<SaleTransaction>> getSalesForCode(
+            @PathVariable Long discountCodeId) {
+
+        return ResponseEntity.ok(
+                saleTransactionService.getSalesForCode(discountCodeId));
+    }
+
+    @GetMapping("/influencer/{influencerId}")
+    public ResponseEntity<List<SaleTransaction>> getSalesForInfluencer(
+            @PathVariable Long influencerId) {
+
+        return ResponseEntity.ok(
+                saleTransactionService.getSalesForInfluencer(influencerId));
+    }
+
+    @GetMapping("/campaign/{campaignId}")
+    public ResponseEntity<List<SaleTransaction>> getSalesForCampaign(
+            @PathVariable Long campaignId) {
+
+        return ResponseEntity.ok(
+                saleTransactionService.getSalesForCampaign(campaignId));
+    }
+}
