@@ -1,15 +1,12 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.DiscountCode;
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import com.example.demo.model.DiscountCode;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DiscountCodeRepository extends JpaRepository<DiscountCode, Long> {
 
-    DiscountCode findByCode(String code);
+    List<DiscountCode> findByInfluencerId(Long influencerId);
 
-    List<DiscountCode> findByInfluencer_Id(Long influencerId);
-
-    List<DiscountCode> findByCampaign_Id(Long campaignId);
+    List<DiscountCode> findByCampaignId(Long campaignId);
 }
