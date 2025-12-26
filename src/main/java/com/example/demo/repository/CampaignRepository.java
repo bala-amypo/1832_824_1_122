@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.Campaign;
+import com.example.demo.entity.Campaign;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
