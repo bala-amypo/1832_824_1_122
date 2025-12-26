@@ -1,8 +1,13 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
+@Table(name = "discount_code")
 public class DiscountCode {
 
     @Id
@@ -10,15 +15,10 @@ public class DiscountCode {
     private Long id;
 
     private String code;
+    private Double discountPercentage;
+    private Double totalSales;
 
-    @ManyToOne
-    private Campaign campaign;
-
-    @ManyToOne
-    private Influencer influencer;
-
-    // ===== GETTERS & SETTERS =====
-
+    // getters & setters
     public Long getId() {
         return id;
     }
@@ -35,19 +35,19 @@ public class DiscountCode {
         this.code = code;
     }
 
-    public Campaign getCampaign() {
-        return campaign;
+    public Double getDiscountPercentage() {
+        return discountPercentage;
     }
 
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
+    public void setDiscountPercentage(Double discountPercentage) {
+        this.discountPercentage = discountPercentage;
     }
 
-    public Influencer getInfluencer() {
-        return influencer;
+    public Double getTotalSales() {
+        return totalSales;
     }
 
-    public void setInfluencer(Influencer influencer) {
-        this.influencer = influencer;
+    public void setTotalSales(Double totalSales) {
+        this.totalSales = totalSales;
     }
 }
