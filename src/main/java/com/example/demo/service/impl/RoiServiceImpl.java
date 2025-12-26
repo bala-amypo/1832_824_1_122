@@ -3,7 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.model.DiscountCode;
 import com.example.demo.model.RoiReport;
 import com.example.demo.repository.DiscountCodeRepository;
-import com.example.demo.repository.RoiReportReepository;
+import com.example.demo.repository.RoiReportRepository;
 import com.example.demo.service.RoiService;
 import java.time.LocalDate;
 import java.util.List;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoiServiceImpl implements RoiService {
 
-    private final RoiReportReepository roiRepository;
+    private final RoiReportRepository roiRepository;
     private final DiscountCodeRepository discountCodeRepository;
 
-    public RoiServiceImpl(RoiReportReepository roiRepository,
+    public RoiServiceImpl(RoiReportRepository roiRepository,
                           DiscountCodeRepository discountCodeRepository) {
         this.roiRepository = roiRepository;
         this.discountCodeRepository = discountCodeRepository;
