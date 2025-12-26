@@ -1,5 +1,8 @@
-import com.example.demo.entity.DiscountCode;
+package com.example.demo.repository;
 
-public interface DiscountCodeRepository 
+import com.example.demo.entity.DiscountCode;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DiscountCodeRepository
         extends JpaRepository<DiscountCode, Long> {
 }
