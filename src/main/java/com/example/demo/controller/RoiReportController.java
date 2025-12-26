@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.service.RoiService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/roi")
 public class RoiReportController {
@@ -14,7 +16,12 @@ public class RoiReportController {
     }
 
     @GetMapping("/{discountCodeId}")
-    public Double getRoi(@PathVariable Long discountCodeId) {
+    public Double calculateRoi(@PathVariable Long discountCodeId) {
         return roiService.calculateRoi(discountCodeId);
+    }
+
+    @GetMapping
+    public List<Double> getAllRoiReports() {
+        return roiService.getAllRoiReports();
     }
 }
