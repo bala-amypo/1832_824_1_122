@@ -19,8 +19,15 @@ public class DiscountCodeService {
         return discountCodeRepository.save(discountCode);
     }
 
-    public List<DiscountCode> getAllDiscountCodes() {
-        return discountCodeRepository.findAll();
+    public DiscountCode updateDiscountCode(Long id, DiscountCode updated) {
+        DiscountCode existing = getDiscountCodeById(id);
+
+        existing.setCode(updated.getCode());
+        existing.setDiscountPercentage(updated.getDiscountPercentage());
+        existing.setCampaign(updated.getCampaign());
+        existing.setInfluencer(updated.getInfluencer());
+
+        return discountCodeRepository.save(existing);
     }
 
     public DiscountCode getDiscountCodeById(Long id) {
@@ -29,12 +36,16 @@ public class DiscountCodeService {
                         new ResourceNotFoundException("Discount code not found"));
     }
 
-    public List<DiscountCode> getDiscountCodesByCampaign(Long campaignId) {
+    public List<DiscountCode> getCodesForInfluencer(Long influencerId) {
+        return discountCodeRepository.findByInfluencerId(influencerId);
+    }
+
+    public List<DiscountCode> getCodesForCampaign(Long campaignId) {
         return discountCodeRepository.findByCampaignId(campaignId);
     }
 
-    public List<DiscountCode> getDiscountCodesByInfluencer(Long influencerId) {
-        return discountCodeRepository.findByInfluencerId(influencerId);
+    public List<DiscountCode> getAllDiscountCodes() {
+        return discountCodeRepository.findAll();
     }
 
     public void deleteDiscountCode(Long id) {
