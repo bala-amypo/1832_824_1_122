@@ -33,9 +33,11 @@ public class CampaignService {
         Campaign existing = getCampaignById(id);
 
         existing.setCampaignName(updatedCampaign.getCampaignName());
-        existing.setBudget(updatedCampaign.getBudget());
         existing.setStartDate(updatedCampaign.getStartDate());
         existing.setEndDate(updatedCampaign.getEndDate());
+
+        // ❌ REMOVE budget if your entity does not have it
+        // existing.setBudget(updatedCampaign.getBudget());
 
         return campaignRepository.save(existing);
     }
