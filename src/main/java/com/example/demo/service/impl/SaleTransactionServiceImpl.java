@@ -1,54 +1,43 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.DiscountCode;
-import com.example.demo.entity.SaleTransaction;
-import com.example.demo.repository.DiscountCodeRepository;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.SaleTransaction;
 import com.example.demo.repository.SaleTransactionRepository;
 import com.example.demo.service.SaleTransactionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import java.sql.Timestamp;
 import java.util.List;
 
-@Service
 public class SaleTransactionServiceImpl implements SaleTransactionService {
 
-    @Autowired
-    private SaleTransactionRepository transactionRepository;
+    private final SaleTransactionRepository saleTransactionRepository;
 
-    @Autowired
-    private DiscountCodeRepository discountCodeRepository;
+    public SaleTransactionServiceImpl(SaleTransactionRepository saleTransactionRepository) {
+        this.saleTransactionRepository = saleTransactionRepository;
+    }
 
     @Override
-    public SaleTransaction logTransaction(SaleTransaction transaction) {
-        DiscountCode code = discountCodeRepository
-                .findById(transaction.getDiscountCode().getId())
-                .orElseThrow(() -> new RuntimeException("Invalid code"));
-
-        if (!code.getActive()) {
-            throw new RuntimeException("Inactive discount code");
+    public SaleTransaction createSale(SaleTransaction transaction) {
+        if (transaction.getTransactionAmount().signum() <= 0) {
+            throw new IllegalArgumentException("Transaction amount must be > 0");
         }
-        return transactionRepository.save(transaction);
+        if (transaction.getTransactionDate() == null) {
+            transaction.setTransactionDate(new Timestamp(System.currentTimeMillis()));
+        }
+        return saleTransactionRepository.save(transaction);
     }
 
     @Override
-    public SaleTransaction getTransactionById(Long id) {
-        return transactionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Transaction not found"));
-    }
-
-    @Override
-    public List<SaleTransaction> getSalesForCode(Long codeId) {
-        return transactionRepository.findByDiscountCode_Id(codeId);
+    public List<SaleTransaction> getSalesForCode(Long discountCodeId) {
+        return saleTransactionRepository.findByDiscountCodeId(discountCodeId);
     }
 
     @Override
     public List<SaleTransaction> getSalesForInfluencer(Long influencerId) {
-        return transactionRepository.findByDiscountCode_Influencer_Id(influencerId);
+        return saleTransactionRepository.findByDiscountCodeInfluencerId(influencerId);
     }
 
     @Override
     public List<SaleTransaction> getSalesForCampaign(Long campaignId) {
-        return transactionRepository.findByDiscountCode_Campaign_Id(campaignId);
+        return saleTransactionRepository.findByDiscountCodeCampaignId(campaignId);
     }
 }
