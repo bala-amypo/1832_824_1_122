@@ -1,12 +1,13 @@
-package com.example.demo.entity;
+package com.example.demo.model;
 
-import jakarta.persistence.*;
-import java.sql.Timestamp;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "influencers", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "socialHandle")
-})
+@Table(name = "influencers")
 public class Influencer {
 
     @Id
@@ -14,42 +15,47 @@ public class Influencer {
     private Long id;
 
     private String name;
-
-    @Column(nullable = false, unique = true)
     private String socialHandle;
-
-    private String email;
-
-    private Boolean active = true;
-
-    private Timestamp createdAt;
+    private boolean active = true;
 
     public Influencer() {
     }
 
-    public Influencer(String name, String socialHandle, String email) {
+    public Influencer(String name, String socialHandle, boolean active) {
         this.name = name;
         this.socialHandle = socialHandle;
-        this.email = email;
-        this.active = true;
+        this.active = active;
     }
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Timestamp(System.currentTimeMillis());
+    public Long getId() {
+        return id;
     }
 
-    // getters & setters
-    public Long getId() { return id; }
-    public String getName() { return name; }
-    public String getSocialHandle() { return socialHandle; }
-    public String getEmail() { return email; }
-    public Boolean getActive() { return active; }
-    public Timestamp getCreatedAt() { return createdAt; }
+    public String getName() {
+        return name;
+    }
 
-    public void setId(Long id) { this.id = id; }
-    public void setName(String name) { this.name = name; }
-    public void setSocialHandle(String socialHandle) { this.socialHandle = socialHandle; }
-    public void setEmail(String email) { this.email = email; }
-    public void setActive(Boolean active) { this.active = active; }
+    public String getSocialHandle() {
+        return socialHandle;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSocialHandle(String socialHandle) {
+        this.socialHandle = socialHandle;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }
