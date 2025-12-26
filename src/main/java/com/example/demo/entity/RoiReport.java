@@ -1,15 +1,9 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import java.math.BigDecimal;
+import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "roi_reports")
 public class RoiReport {
 
     @Id
@@ -19,20 +13,11 @@ public class RoiReport {
     @ManyToOne
     private DiscountCode discountCode;
 
-    private BigDecimal totalSales;
-    private Integer totalTransactions;
-    private Double roiPercentage;
+    private double roiValue;
 
-    public RoiReport() {
-    }
+    private LocalDate generatedDate;
 
-    public RoiReport(DiscountCode discountCode, BigDecimal totalSales,
-                     Integer totalTransactions, Double roiPercentage) {
-        this.discountCode = discountCode;
-        this.totalSales = totalSales;
-        this.totalTransactions = totalTransactions;
-        this.roiPercentage = roiPercentage;
-    }
+    // getters & setters
 
     public Long getId() {
         return id;
@@ -42,35 +27,23 @@ public class RoiReport {
         return discountCode;
     }
 
-    public BigDecimal getTotalSales() {
-        return totalSales;
-    }
-
-    public Integer getTotalTransactions() {
-        return totalTransactions;
-    }
-
-    public Double getRoiPercentage() {
-        return roiPercentage;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setDiscountCode(DiscountCode discountCode) {
         this.discountCode = discountCode;
     }
 
-    public void setTotalSales(BigDecimal totalSales) {
-        this.totalSales = totalSales;
+    public double getRoiValue() {
+        return roiValue;
     }
 
-    public void setTotalTransactions(Integer totalTransactions) {
-        this.totalTransactions = totalTransactions;
+    public void setRoiValue(double roiValue) {
+        this.roiValue = roiValue;
     }
 
-    public void setRoiPercentage(Double roiPercentage) {
-        this.roiPercentage = roiPercentage;
+    public LocalDate getGeneratedDate() {
+        return generatedDate;
+    }
+
+    public void setGeneratedDate(LocalDate generatedDate) {
+        this.generatedDate = generatedDate;
     }
 }

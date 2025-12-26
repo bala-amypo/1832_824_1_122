@@ -1,8 +1,8 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.Campaign;
+import com.example.demo.model.DiscountCode;
 import com.example.demo.model.RoiReport;
-import com.example.demo.repository.CampaignRepository;
+import com.example.demo.repository.DiscountCodeRepository;
 import com.example.demo.repository.RoiRepository;
 import com.example.demo.service.RoiService;
 import java.time.LocalDate;
@@ -12,29 +12,40 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoiServiceImpl implements RoiService {
 
-    private final CampaignRepository campaignRepository;
     private final RoiRepository roiRepository;
+    private final DiscountCodeRepository discountCodeRepository;
 
-    public RoiServiceImpl(CampaignRepository campaignRepository,
-                          RoiRepository roiRepository) {
-        this.campaignRepository = campaignRepository;
+    public RoiServiceImpl(RoiRepository roiRepository,
+                          DiscountCodeRepository discountCodeRepository) {
         this.roiRepository = roiRepository;
+        this.discountCodeRepository = discountCodeRepository;
     }
 
     @Override
-    public RoiReport generateRoiForCampaign(Long campaignId) {
+    public RoiReport generateReportForCode(Long discountCodeId) {
 
-        Campaign campaign = campaignRepository.findById(campaignId)
-                .orElseThrow(() -> new RuntimeException("Campaign not found"));
+        DiscountCode code = discountCodeRepository.findById(discountCodeId)
+                .orElseThrow(() -> new RuntimeException("Discount code not found"));
 
-        double roiValue = campaign.getRevenue() - campaign.getBudget();
+        double roiValue = code.getTotalSales() - code.getCampaign().getBudget();
 
-        RoiReport roi = new RoiReport();
-        roi.setCampaign(campaign);
-        roi.setRoiValue(roiValue);
-        roi.setGeneratedDate(LocalDate.now());
+        RoiReport report = new RoiReport();
+        report.setDiscountCode(code);
+        report.setRoiValue(roiValue);
+        report.setGeneratedDate(LocalDate.now());
 
-        return roiRepository.save(roi);
+        return roiRepository.save(report);
+    }
+
+    @Override
+    public RoiReport getReportById(Long id) {
+        return roiRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ROI report not found"));
+    }
+
+    @Override
+    public List<RoiReport> getReportsForInfluencer(Long influencerId) {
+        return roiRepository.findByDiscountCodeInfluencerId(influencerId);
     }
 
     @Override

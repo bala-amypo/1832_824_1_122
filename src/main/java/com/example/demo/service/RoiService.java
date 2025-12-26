@@ -5,7 +5,11 @@ import java.util.List;
 
 public interface RoiService {
 
-    RoiReport generateRoiForCampaign(Long campaignId);
+    RoiReport generateReportForCode(Long discountCodeId);
+
+    RoiReport getReportById(Long id);
+
+    List<RoiReport> getReportsForInfluencer(Long influencerId);
 
     List<RoiReport> getAllRoiReports();
 }
