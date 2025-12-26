@@ -9,6 +9,8 @@ public interface DiscountCodeService {
 
     DiscountCode updateDiscountCode(Long id, DiscountCode discountCode);
 
+    DiscountCode getDiscountCodeById(Long id);
+
     List<DiscountCode> getCodesForInfluencer(Long influencerId);
 
     List<DiscountCode> getCodesForCampaign(Long campaignId);
