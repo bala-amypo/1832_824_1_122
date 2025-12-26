@@ -1,10 +1,16 @@
 package com.example.demo.service;
 
+import com.example.demo.model.RoiReport;
 import java.util.List;
 
 public interface RoiService {
 
-    Double calculateRoi(Long discountCodeId);
+    List<RoiReport> getReportsForInfluencer(Long influencerId);
 
-    List<Double> getAllRoiReports();
+    List<RoiReport> getReportsForCampaign(Long campaignId);
+    RoiReport generateRoiForCode(Long codeId);
+    RoiReport saveRoiReport(RoiReport roiReport); // new method
+
 }
+
+

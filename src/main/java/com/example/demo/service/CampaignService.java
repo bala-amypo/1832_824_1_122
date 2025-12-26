@@ -1,49 +1,19 @@
 package com.example.demo.service;
 
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.entity.Campaign;
-import com.example.demo.repository.CampaignRepository;
+import com.example.demo.model.Campaign;
 import java.util.List;
-import org.springframework.stereotype.Service;
 
-@Service
-public class CampaignService {
+public interface CampaignService {
 
-    private final CampaignRepository campaignRepository;
+    Campaign createCampaign(Campaign campaign);
 
-    public CampaignService(CampaignRepository campaignRepository) {
-        this.campaignRepository = campaignRepository;
-    }
+    Campaign updateCampaign(Long id, Campaign campaign);
 
-    public Campaign createCampaign(Campaign campaign) {
-        return campaignRepository.save(campaign);
-    }
+    Campaign getCampaignById(Long id);
 
-    public List<Campaign> getAllCampaigns() {
-        return campaignRepository.findAll();
-    }
+    List<Campaign> getAllCampaigns();
 
-    public Campaign getCampaignById(Long id) {
-        return campaignRepository.findById(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Campaign not found"));
-    }
-
-    public Campaign updateCampaign(Long id, Campaign updatedCampaign) {
-        Campaign existing = getCampaignById(id);
-
-        existing.setCampaignName(updatedCampaign.getCampaignName());
-        existing.setStartDate(updatedCampaign.getStartDate());
-        existing.setEndDate(updatedCampaign.getEndDate());
-
-        // ❌ REMOVE budget if your entity does not have it
-        // existing.setBudget(updatedCampaign.getBudget());
-
-        return campaignRepository.save(existing);
-    }
-
-    public void deleteCampaign(Long id) {
-        Campaign campaign = getCampaignById(id);
-        campaignRepository.delete(campaign);
-    }
+    void deactivateCampaign(Long id);
 }
+
+
