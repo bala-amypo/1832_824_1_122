@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.SaleTransaction;
 import com.example.demo.service.SaleTransactionService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,19 +11,21 @@ import java.util.List;
 @RequestMapping("/sales")
 public class SaleTransactionController {
 
-    private final SaleTransactionService service;
+    private final SaleTransactionService saleTransactionService;
 
-    public SaleTransactionController(SaleTransactionService service) {
-        this.service = service;
+    public SaleTransactionController(SaleTransactionService saleTransactionService) {
+        this.saleTransactionService = saleTransactionService;
     }
 
     @PostMapping
-    public SaleTransaction create(@RequestBody SaleTransaction transaction) {
-        return service.create(transaction);
+    public ResponseEntity<SaleTransaction> createSale(@RequestBody SaleTransaction saleTransaction) {
+        return ResponseEntity.ok(saleTransactionService.createSale(saleTransaction));
     }
 
-    @GetMapping
-    public List<SaleTransaction> getAll() {
-        return service.getAll();
+    @GetMapping("/code/{codeId}")
+    public ResponseEntity<List<SaleTransaction>> getSalesForCode(@PathVariable Long codeId) {
+        return ResponseEntity.ok(saleTransactionService.getSalesForCode(codeId));
     }
 }
+
+

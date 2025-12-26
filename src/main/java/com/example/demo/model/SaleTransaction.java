@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Entity
@@ -10,36 +11,34 @@ public class SaleTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Double transactionAmount;
-
-    private Timestamp transactionDate;
-
     @ManyToOne
     private DiscountCode discountCode;
 
-    // ===== GETTERS & SETTERS =====
+    private BigDecimal transactionAmount;
 
-    public Double getTransactionAmount() {
-        return transactionAmount;
+    private Timestamp transactionDate;
+
+    private Long customerId;
+
+    @PrePersist
+    public void onCreate() {
+        this.transactionDate = new Timestamp(System.currentTimeMillis());
     }
 
-    public void setTransactionAmount(Double transactionAmount) {
-        this.transactionAmount = transactionAmount;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Timestamp getTransactionDate() {
-        return transactionDate;
-    }
+    public DiscountCode getDiscountCode() { return discountCode; }
+    public void setDiscountCode(DiscountCode discountCode) { this.discountCode = discountCode; }
 
-    public void setTransactionDate(Timestamp transactionDate) {
-        this.transactionDate = transactionDate;
-    }
+    public BigDecimal getTransactionAmount() { return transactionAmount; }
+    public void setTransactionAmount(BigDecimal transactionAmount) { this.transactionAmount = transactionAmount; }
 
-    public DiscountCode getDiscountCode() {
-        return discountCode;
-    }
+    public Timestamp getTransactionDate() { return transactionDate; }
+    public void setTransactionDate(Timestamp transactionDate) { this.transactionDate = transactionDate; }
 
-    public void setDiscountCode(DiscountCode discountCode) {
-        this.discountCode = discountCode;
-    }
+    public Long getCustomerId() { return customerId; }
+    public void setCustomerId(Long customerId) { this.customerId = customerId; }
 }
+
+

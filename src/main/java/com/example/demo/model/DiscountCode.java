@@ -9,37 +9,36 @@ public class DiscountCode {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Double totalSales;      // ✅ REQUIRED
-    private Double campaign;        // campaign cost
-    private Long influencerId;      // ✅ REQUIRED for repository query
+    @Column(unique = true)
+    private String codeValue;
 
-    // ===== GETTERS & SETTERS =====
+    private Double discountPercentage;
 
-    public Long getId() {
-        return id;
-    }
+    private boolean active = true;
 
-    public Double getTotalSales() {
-        return totalSales;
-    }
+    @ManyToOne
+    private Influencer influencer;
 
-    public void setTotalSales(Double totalSales) {
-        this.totalSales = totalSales;
-    }
+    @ManyToOne
+    private Campaign campaign;
 
-    public Double getCampaign() {
-        return campaign;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setCampaign(Double campaign) {
-        this.campaign = campaign;
-    }
+    public String getCodeValue() { return codeValue; }
+    public void setCodeValue(String codeValue) { this.codeValue = codeValue; }
 
-    public Long getInfluencerId() {
-        return influencerId;
-    }
+    public Double getDiscountPercentage() { return discountPercentage; }
+    public void setDiscountPercentage(Double discountPercentage) { this.discountPercentage = discountPercentage; }
 
-    public void setInfluencerId(Long influencerId) {
-        this.influencerId = influencerId;
-    }
+    public boolean isActive() { return active; }
+    public void setActive(boolean active) { this.active = active; }
+
+    public Influencer getInfluencer() { return influencer; }
+    public void setInfluencer(Influencer influencer) { this.influencer = influencer; }
+
+    public Campaign getCampaign() { return campaign; }
+    public void setCampaign(Campaign campaign) { this.campaign = campaign; }
 }
+
+

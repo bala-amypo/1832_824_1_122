@@ -1,68 +1,43 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "campaigns")
 public class Campaign {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String campaignName;
 
-    private Double budget;
-
     private LocalDate startDate;
-
     private LocalDate endDate;
 
-    public Campaign() {
-    }
+    private BigDecimal budget;
 
-    public Long getId() {
-        return id;
-    }
+    private boolean active = true;
 
-    public String getCampaignName() {
-        return campaignName;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Double getBudget() {
-        return budget;
-    }
+    public String getCampaignName() { return campaignName; }
+    public void setCampaignName(String campaignName) { this.campaignName = campaignName; }
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
+    public LocalDate getStartDate() { return startDate; }
+    public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
+    public LocalDate getEndDate() { return endDate; }
+    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public BigDecimal getBudget() { return budget; }
+    public void setBudget(BigDecimal budget) { this.budget = budget; }
 
-    public void setCampaignName(String campaignName) {
-        this.campaignName = campaignName;
-    }
-
-    public void setBudget(Double budget) {
-        this.budget = budget;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
+    public boolean isActive() { return active; }
+    public void setActive(boolean active) { this.active = active; }
 }
+
+
