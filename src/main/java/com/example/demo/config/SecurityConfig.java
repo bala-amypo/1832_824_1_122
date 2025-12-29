@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,47 +14,74 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
-            // Disable CSRF for Postman/Swagger testing
+           
             .csrf(csrf -> csrf.disable())
-            
-            // Authorization rules
+
+           
             .authorizeHttpRequests(auth -> auth
-                // Swagger access for both roles
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+
+               
+                .requestMatchers("/auth/**", "/login", "/register").permitAll()
+
+             
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**")
+                .hasAnyRole("ADMIN", "MARKETER")
+
                 
-                // ADMIN: full POST access
-                .requestMatchers(
-                    "/admin/**", 
-                    "/campaigns/**", 
-                    "/influencers/**", 
-                    "/discount-codes/**", 
-                    "/sales/**", 
-                    "/roi/**", 
-                    "/users/**"
-                ).hasRole("ADMIN")
-                
-                // MARKETER: read-only access (GET)
-                .requestMatchers(
-                    "/campaigns/**", 
-                    "/influencers/**", 
-                    "/discount-codes/**", 
-                    "/sales/**", 
-                    "/roi/**"
+                .requestMatchers(HttpMethod.GET,
+                        "/campaigns/**",
+                        "/influencers/**",
+                        "/discounts/**",
+                        "/sales/**",
+                        "/roi/**"
                 ).hasAnyRole("ADMIN", "MARKETER")
-                
-                // All other requests require authentication
+
+            
+                .requestMatchers(HttpMethod.POST,
+                        "/campaigns/**",
+                        "/influencers/**",
+                        "/discounts/**",
+                        "/sales/**",
+                        "/roi/**"
+                ).hasRole("ADMIN")
+
+                .requestMatchers(HttpMethod.PUT,
+                        "/campaigns/**",
+                        "/influencers/**",
+                        "/discounts/**",
+                        "/sales/**",
+                        "/roi/**"
+                ).hasRole("ADMIN")
+
+                // ✅ DELETE access: ADMIN only
+                .requestMatchers(HttpMethod.DELETE,
+                        "/campaigns/**",
+                        "/influencers/**",
+                        "/discounts/**",
+                        "/sales/**",
+                        "/roi/**"
+                ).hasRole("ADMIN")
+
+             
                 .anyRequest().authenticated()
             )
+
+         
             .formLogin()
+
+          
             .and()
-            .logout().permitAll();
+            .logout(logout -> logout.permitAll());
 
         return http.build();
     }
 
+    
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+
         var admin = org.springframework.security.core.userdetails.User
                 .withUsername("admin")
                 .password(passwordEncoder.encode("admin123"))
@@ -69,9 +97,9 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(admin, marketer);
     }
 
+   
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
-
