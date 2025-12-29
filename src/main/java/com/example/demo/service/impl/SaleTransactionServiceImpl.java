@@ -52,4 +52,3 @@ public class SaleTransactionServiceImpl implements SaleTransactionService {
     }
 }
 
-

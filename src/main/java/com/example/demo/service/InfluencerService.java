@@ -16,4 +16,3 @@ public interface InfluencerService {
     void deactivateInfluencer(Long id);
 }
 
-

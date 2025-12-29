@@ -16,4 +16,3 @@ public interface SaleTransactionService {
     List<SaleTransaction> getSalesForCampaign(Long campaignId);
 }
 
-
