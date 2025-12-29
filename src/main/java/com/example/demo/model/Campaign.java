@@ -40,4 +40,3 @@ public class Campaign {
     public void setActive(boolean active) { this.active = active; }
 }
 
-

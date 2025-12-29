@@ -41,4 +41,3 @@ public class DiscountCode {
     public void setCampaign(Campaign campaign) { this.campaign = campaign; }
 }
 
-
