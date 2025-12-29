@@ -15,4 +15,3 @@ public interface DiscountCodeRepository extends JpaRepository<DiscountCode, Long
     List<DiscountCode> findByCampaign_Id(Long campaignId);
 }
 
-

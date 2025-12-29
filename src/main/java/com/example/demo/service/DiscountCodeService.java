@@ -18,4 +18,3 @@ public interface DiscountCodeService {
     void deactivateCode(Long id);
 }
 
-

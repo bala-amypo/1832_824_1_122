@@ -16,4 +16,3 @@ public interface CampaignService {
     void deactivateCampaign(Long id);
 }
 
-

@@ -46,4 +46,3 @@ public class Influencer {
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
 }
 
-
